@@ -78,13 +78,12 @@ void main(List<String> args) {
   // 4-1. List 형 - 배열과 유사함
   List<String> we = ['a', 'b', 'c'];
   // var we = <String>['a', 'b', 'c']; -> 제네릭을 이퀄 뒤에 표기 가능(변수선언은 var/dynamic 붙여야함)
-  
+
   // 데이터 추가
   we.addAll(["d, e, f, g, h"]);
   we.add("z");
   print(we);
   // 숫자는 다른형이므로 에러남
-
 
   print(we[2] + "는 알파벳이다");
 
@@ -112,10 +111,42 @@ void main(List<String> args) {
   print("짝수Set을 List변환후[4]:${evens.toList()[4]}");
 
   // 4-3. Map 형 - 데이터에 라벨링된 데이터 집합 (JS 객체와 유사)
+  // - 표시 : {속성:값, 속성:값}
+  Map<String, String> actor = {"이름": "강동원", "나이": "41"};
+  print("배우 이름은 ${actor["이름"]}이고 나이는 ${actor["나이"]}세입니다");
+
+  //List<Map> actorData = [
+  //List<Map<String,int>> actorData = [
+  // List<Map<String,int>> actorData = [
+  // -> List 내부 데이터인 Map형의 제네릭이 없으면 자동으로 dynamic으로 설정됨
+
+  List<Map> actorData = [
+    //<String, String>{"이름": "강동원", "나이": "41"},
+    // 내부에 Map형 제네릭도 설정할 수 있음
+    {"이름": "강동원", "나이": "41"},
+    {"이름": "하하", "나이": "42"},
+    {"이름": "유재석", "나이": "52"}
+  ];
+  print("세번째 인물의 이름은 ${actorData[2]["이름"]}이고 나이는 ${actorData[2]["나이"]}세이다");
+
+  // [ 다트의 형변환 (Casting) ]
+  // -> 특정 데이터형에서 다른 형으로 변환하는것을
+  // 흔히 캐스팅이라고도 함!
+
+  // 1. 일반적인 형변환 : 변수형.parse(대상변수)
+  // 2. 메서드 체인방식 : 변수.to형()
+  // -> 변수.toString() -> 문자형변환
+  // -> 변수.toList() -> 컬랙션 List형변환
+
+  String stNum = "777";
+  print("문자형 숫자:$stNum");
+
+  // 문자형 숫자를 캐스팅하여 숫자로 변환 후 계산하기
+  num result = 111 + int.parse(stNum);
+  print("111+777=$result");
+
+  // 주의: 형변환이 안될것 같으면 변환하지 마라!
+  // -> 예컨데 문자형 문자를 숫자로 변경못함!
 
 
-
-
-
-  
 } ///////////////////////// main 메서드
